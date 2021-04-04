@@ -76,32 +76,31 @@ Poly Poly::operator+( Poly& p)
 
 Poly Poly::operator-(Poly& p)
 {
-	Poly difference;
-	if (p.maxExponent > maxExponent)
+	
+	if (p.getSize() > getSize())
 	{
-		//difference = Poly(p);
-		difference = p;
-		for (int i = 0; i <= maxExponent; i++)
+		Poly difference;
+		difference = Poly(p);
+		//difference = p;
+		for (int i = 0; i < getSize(); i++)
 		{
-			difference.arr[i] = difference.arr[i] - p.arr[i];
+			difference.arr[i] = difference.arr[i] - arr[i];
 		}
-		for (int i = maxExponent; i <= p.maxExponent; i++)
-		{
-		    difference.arr[i] = p.arr[i];
-		}
+		
 		return difference;
 	}
 	else
 	{
-		//difference = Poly(*this);
-		difference = *this;
-		for (int i = 0; i < p.maxExponent; i++)
+		Poly difference2;
+		difference2 = Poly(*this);
+		//difference = *this;
+		for (int i = 0; i < p.getSize(); i++)
 		{
-			difference.arr[i] = difference.arr[i] - p.arr[i];
+			difference2.arr[i] = difference2.arr[i] - p.arr[i];
 		}
-
+		return difference2;
 	}
-	return difference;
+
 }
 
 
