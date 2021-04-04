@@ -1,5 +1,2 @@
-﻿  poly.cpp
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(82,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(86,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(96): warning C4715: 'Poly::operator+': not all control paths return a value
+﻿  Main.cpp
   Assignment 1 ADT for poly.vcxproj -> C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Debug\Assignment 1 ADT for poly.exe

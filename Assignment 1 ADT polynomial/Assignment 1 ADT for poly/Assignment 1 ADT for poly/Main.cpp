@@ -69,14 +69,16 @@ int main() {
 	B2 = B;
 	C = A + B;
 	cout << "Compute C = A + B: " << C << endl << endl;
+	C = B + A;
+	cout << "Compute C = B + A: " << C << endl << endl;
 
 	//cout << ((A == B) ? "A == B" : "A is not == B") << endl;
 	//cout << ((A != B) ? "A is not == B" : "A == B") << endl << endl;
 
-	//Z1 = A2 - B2;
-	//cout << "Compute  Z1 = A2 - B2: " << Z1 << endl;
-	//Z2 = B2 - A2;
-	//cout << "Compute  Z2 = B2 - A2: " << Z2 << endl << endl;
+	Z1 = A2 - B2;
+	cout << "Compute  Z1 = A2 - B2: " << Z1 << endl;
+	Z2 = B2 - A2;
+	cout << "Compute  Z2 = B2 - A2: " << Z2 << endl << endl;
 
 	//cout << "Compute  D = A * B - 15" << endl;
 	//cout << "Before: D =" << D << endl;

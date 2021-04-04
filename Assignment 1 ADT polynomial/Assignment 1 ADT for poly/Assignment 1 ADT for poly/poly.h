@@ -11,13 +11,13 @@ public:
 	Poly(Poly& p);
 
 
-	//~Poly();
+	~Poly();
 
 	//overloads
 	friend ostream& operator<<(ostream& out, const Poly& p);
 
-	Poly operator+(const Poly& p);
-	Poly operator-(const Poly& p);
+	Poly operator+( Poly& p);
+	Poly operator-( Poly& p);
 	Poly operator*(unsigned int num);
 	bool operator==(const Poly& p) const;
 	bool operator!=(const Poly& p) const;

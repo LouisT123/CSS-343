@@ -18,84 +18,91 @@ Poly::Poly(int coefficientIn, int largestExponentIn)
 
 	//looping through array starting from the largest exp index 
 	//or largest coefficient and fill w/ 0's
-	/*for (int i = 0; i < getSize(); i++)
+	for (int i = 0; i < getSize(); i++)
 	{
 			arr[i] = 0;
-	}*/
+	}
 	//add coeff to largest exponent
 	arr[largestExponentIn] = coefficientIn;
+
+	
 }
 
 //deep copy constructor
 Poly::Poly(Poly& p)
 {
-	maxExponent = p.maxExponent;
+	//added this
+	this->maxExponent = p.maxExponent;
 
 	this->arr = (int*)malloc(sizeof(int) * getSize());
 
 	//looping through array starting from the largest exp index 
-	//or largest coefficient and fill w/ 0's
-	/*for (int i = 0; i < getSize(); i++)
+	//or largest coefficient and fill 
+	for (int i = 0; i < getSize(); i++)
 	{
-		this->arr[i] = 0;
-	}*/
-
-	//add coeff to largest exponent
-	this->arr[p.maxExponent] = p.coeff;
-
-}
-
-Poly Poly::operator+(const Poly& p) 
-{
-	////find biggest power
-	//int maxExp = this->maxExponent;
-	////if first exp larger than last...
-	//if (this->getSize() > p.getSize())
-	//{
-	//	//...make it the largest exp
-	//	maxExp = this->getSize();
-
-	//	//create new poly based on this size
-	//	Poly sum(*this);
-
-	//	//for size of poly with smallest exp 
-	//	for (int i = 0; i < p.getSize() + 1; i++)
-	//	{
-	//		//add each element of this array with corresponding element from other object's array 
-	//		sum.arr[i] = sum.arr[i] + p.arr[i];
-	//	}
-	//	return sum;
-	//}
-	//else
-	//{
-	//	for (int i = 0; i < ; i++)
-	//	{
-
-	//	}
-	//}
-
-	//another attempt at implementation  
-
-	if (this->getSize() > p.getSize())
-	{
-		Poly sum(*this);
-		for (size_t i = 0; i < this->getSize(); i++)
-		{
-			sum.arr[i] = arr[i];
-		}
-		for (size_t i = 0; i < p.getSize(); i++)
-		{
-			sum.arr[i] += p.arr[i];
-		}
-		//sum is returning (0,8)
-		return sum;
+		this->arr[i] = p.arr[i];
 	}
 
 	
-
 }
 
+Poly Poly::operator+( Poly& p) 
+{
+	
+	if (p.getSize() > this->getSize())
+	{
+		Poly sum;
+		sum = Poly(p);
+		//sum = p;
+		for (int i = 0; i < getSize(); i++)
+		{
+			sum.arr[i] = arr[i] + sum.arr[i];
+		}
+		return sum;
+	}
+	else 
+	{
+		Poly sum2;
+		sum2 = Poly(*this);
+		//sum2 = *this;
+		for (int i = 0; i < p.getSize(); i++)
+		{
+			sum2.arr[i] = p.arr[i] + sum2.arr[i];
+		}
+		return sum2;
+	}
+	
+}
 
+Poly Poly::operator-(Poly& p)
+{
+	Poly difference;
+	if (p.maxExponent > maxExponent)
+	{
+		//difference = Poly(p);
+		difference = p;
+		for (int i = 0; i <= maxExponent; i++)
+		{
+			difference.arr[i] = difference.arr[i] - p.arr[i];
+		}
+		for (int i = maxExponent; i <= p.maxExponent; i++)
+		{
+		    difference.arr[i] = p.arr[i];
+		}
+		return difference;
+	}
+	else
+	{
+		//difference = Poly(*this);
+		difference = *this;
+		for (int i = 0; i < p.maxExponent; i++)
+		{
+			difference.arr[i] = difference.arr[i] - p.arr[i];
+		}
+
+	}
+	return difference;
+}
 
 
 int Poly::getSize() const
@@ -114,17 +121,17 @@ void Poly::setCoeff(int coeff, int exponent)
 }
 
 //gotta valgrind to check
-//Poly::~Poly()
-//{
-	//delete[] arr;
-//}
+Poly::~Poly()
+{
+	
+}
 
 
 ostream& operator<<(ostream& out, const Poly& p)
 {
 	//inital string
 	string outputString = "";
-	
+
 	//if 1 arg print 
 	if (p.getCoeff(0) != 0 && p.maxExponent == 0)
 	{
@@ -142,22 +149,22 @@ ostream& operator<<(ostream& out, const Poly& p)
 	{
 		outputString += to_string(0) + "x^0";
 	}
+
 	//if 2 arg print
 	else
 	{
-
-		//TODO don't print 0's
+		//TODO don't print 0's if zeros filled deleted
 		//loop through whole array starting from back
 		for (int i = p.getSize() - 1; i > 0; i--)
 		{
-			
+	
 			if (p.getCoeff(i) > 0)
 			{
-				outputString += "+" + to_string(p.arr[i]) + "x^" + to_string(i);
+				outputString += "+" + to_string(p.arr[i]) + "x^"+ to_string(i);
 			}
 			else if (p.getCoeff(i) < 0)
 			{
-				outputString += to_string(p.arr[i]) + "x^" + to_string(i);
+				outputString += to_string(p.arr[i]) + "x^"+ to_string(i);
 			}
 		}
 	}
