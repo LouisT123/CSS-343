@@ -46,14 +46,14 @@ Poly::Poly(Poly& p)
 	
 }
 
-Poly Poly::operator+( Poly& p) 
+Poly Poly::operator+(Poly& p)
 {
 	
 	if (p.getSize() > this->getSize())
 	{
 		Poly sum;
 		sum = Poly(p);
-		//sum = p;
+		
 		for (int i = 0; i < getSize(); i++)
 		{
 			sum.arr[i] = arr[i] + sum.arr[i];
@@ -64,7 +64,7 @@ Poly Poly::operator+( Poly& p)
 	{
 		Poly sum2;
 		sum2 = Poly(*this);
-		//sum2 = *this;
+		
 		for (int i = 0; i < p.getSize(); i++)
 		{
 			sum2.arr[i] = p.arr[i] + sum2.arr[i];
@@ -81,7 +81,7 @@ Poly Poly::operator-(Poly& p)
 	{
 		Poly difference;
 		difference = Poly(p);
-		//difference = p;
+		
 		for (int i = 0; i < getSize(); i++)
 		{
 			difference.arr[i] = difference.arr[i] - arr[i];
@@ -93,7 +93,7 @@ Poly Poly::operator-(Poly& p)
 	{
 		Poly difference2;
 		difference2 = Poly(*this);
-		//difference = *this;
+		
 		for (int i = 0; i < p.getSize(); i++)
 		{
 			difference2.arr[i] = difference2.arr[i] - p.arr[i];
@@ -102,6 +102,26 @@ Poly Poly::operator-(Poly& p)
 	}
 
 }
+//multiply the coeff, add the exponents
+Poly Poly::operator*(Poly& p)
+{
+	int curExponent = p.getSize() + this->getSize();
+	//here adding exponents
+	Poly product(0, curExponent);
+
+	//for whole array of poly 1 
+	for (int i = 0; i < this->getSize(); i++)
+	{
+		//for whole array of poly 2
+		for (int g = 0; g < p.getSize(); g++)
+		{
+			//multiply coefficients
+			product.arr[i + g] += (this->arr[i] * p.arr[g]);
+		}
+	}
+	return product;
+}
+
 
 
 int Poly::getSize() const

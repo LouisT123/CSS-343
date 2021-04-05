@@ -80,10 +80,15 @@ int main() {
 	Z2 = B2 - A2;
 	cout << "Compute  Z2 = B2 - A2: " << Z2 << endl << endl;
 
-	//cout << "Compute  D = A * B - 15" << endl;
-	//cout << "Before: D =" << D << endl;
-	//D = A * B - 15;
-	//cout << "After:  D =" << D << endl << endl;
+	cout << "compute D =  A * B" << endl;
+	cout << "Before: D =" << D << endl;
+	D = A * B;
+	cout << "After:  D =" << D << endl << endl; 
+
+	/*cout << "Compute  D = A * B - 15" << endl;
+	cout << "Before: D =" << D << endl;
+	D = A * B - 15;
+	cout << "After:  D =" << D << endl << endl;*/
 
 	//cout << "Test assignment operators" << endl;
 	//X = C = D = D;

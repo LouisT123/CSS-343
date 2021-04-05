@@ -16,9 +16,9 @@ public:
 	//overloads
 	friend ostream& operator<<(ostream& out, const Poly& p);
 
-	Poly operator+( Poly& p);
-	Poly operator-( Poly& p);
-	Poly operator*(unsigned int num);
+	Poly operator+(Poly& p);
+	Poly operator-(Poly& p);
+	Poly operator*(Poly& p);
 	bool operator==(const Poly& p) const;
 	bool operator!=(const Poly& p) const;
 	Poly& operator+=(const Poly& p) const;
