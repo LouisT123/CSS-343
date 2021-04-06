@@ -288,7 +288,7 @@ ostream& operator<<(ostream& out, const Poly& p)
 	else if (p.getCoeff(0) != 0)
 	{
 		//loop through whole array starting from back
-		for (int i = p.getSize() - 1; i > 0; i--)
+		for (int i = p.getSize() - 1; i > 1; i--)
 		{
 
 			if (p.getCoeff(i) > 0)
@@ -300,15 +300,36 @@ ostream& operator<<(ostream& out, const Poly& p)
 				outputString += to_string(p.arr[i]) + "x^" +to_string(i);
 			}
 		}
-		outputString += "+" + to_string(p.getCoeff(0));
+		if (p.arr[1] > 0)
+		{
+			outputString += "+" + to_string(p.arr[1]) + "x";
+		}
+		else if (p.arr[1] == 0)
+		{
+			//do nothing
+		}
+		else
+		{
+			outputString += to_string(p.arr[1]) + "x";
+		}
+		if (p.arr[0] >= 0)
+		{
+			outputString += "+" + to_string(p.getCoeff(0));
+		}
+		else
+		{
+			outputString += to_string(p.getCoeff(0));
+		}
+		
 	}
+
 	//if 2 arg print
 	else
 	{
 		//loop through whole array starting from back
-		for (int i = p.getSize() - 1; i > 0; i--)
+		for (int i = p.getSize() - 1; i > 1; i--)
 		{
-	
+		
 			if (p.getCoeff(i) > 0)
 			{
 				outputString += "+" + to_string(p.arr[i]) + "x^"+ to_string(i);
@@ -317,6 +338,19 @@ ostream& operator<<(ostream& out, const Poly& p)
 			{
 				outputString += to_string(p.arr[i]) + "x^"+ to_string(i);
 			}
+		
+		}
+		if (p.arr[1] > 0)
+		{
+			outputString += "+" + to_string(p.arr[1]) + "x";
+		}
+		else if (p.arr[1] == 0)
+		{
+			//do nothing
+		}
+		else
+		{
+			outputString += to_string(p.arr[1]) + "x";
 		}
 	}
 
