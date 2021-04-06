@@ -28,15 +28,15 @@ public:
 													//outputs polynomial, mutuator
 	friend ostream& operator<<(ostream& out, const Poly& p); 
 	
-
-	Poly operator+(const Poly& p);							//adds 2 polynomials
-	Poly operator-(const Poly& p);							//adds 2 polynomials
-	Poly operator*(const Poly& p);							//adds 2 polynomials
-	bool operator==(const Poly& p) const;					//adds 2 polynomials
-	bool operator!=(const Poly& p) const;					//adds 2 polynomials
-	Poly& operator+=(Poly& p);								//adds 2 polynomials
-	Poly& operator-=(Poly& p);								//adds 2 polynomials
-	Poly& operator*=(Poly& p);								//adds 2 polynomials
+	Poly operator=(const Poly& p);						//assignments 2 polynomials
+	Poly operator+(const Poly& p);						//adds 2 polynomials
+	Poly operator-(const Poly& p);						//subtracts 2 polynomials
+	Poly operator*(const Poly& p);						//mutlipies 2 polynomials
+	bool operator==(const Poly& p) const;				//compares 2 polynomials are equal
+	bool operator!=(const Poly& p) const;				//compares 2 polynomials are unequal
+	Poly& operator+=(Poly& p);							//adds polynomial to self
+	Poly& operator-=(Poly& p);							//subtracts polynomial to self
+	Poly& operator*=(Poly& p);							//multiplies polynomial to self
 
 	int getCoeff(int exponent) const;						//adds 2 polynomials
 	void setCoeff(int coeff, int exponent);					//adds 2 polynomials

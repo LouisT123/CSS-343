@@ -45,6 +45,26 @@ Poly::Poly(const Poly& p)
 
 }
 
+Poly Poly::operator=(const Poly& p)
+{
+	if (this != &p)
+	{
+		//added this
+		this->maxExponent = p.maxExponent;
+
+		this->arr = (int*)malloc(sizeof(int) * getSize());
+
+		//looping through array starting from the largest exp index 
+		//or largest coefficient and fill 
+		for (int i = 0; i < getSize(); i++)
+		{
+			this->arr[i] = p.arr[i];
+		}
+	}
+	
+	return *this;
+}
+
 //-----------------------------------------------------------------------------
 //overloaded addition operator  (add 2 polynomials)
 //operator +

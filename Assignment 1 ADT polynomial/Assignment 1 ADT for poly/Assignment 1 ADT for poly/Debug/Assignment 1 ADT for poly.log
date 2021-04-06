@@ -1,5 +1,5 @@
 ﻿  poly.cpp
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(144,23): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(165,23): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(221): warning C4715: 'Poly::getCoeff': not all control paths return a value
+C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(164,23): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(185,23): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Assignment 1 ADT for poly\poly.cpp(241): warning C4715: 'Poly::getCoeff': not all control paths return a value
   Assignment 1 ADT for poly.vcxproj -> C:\Users\L3g8n\Desktop\Programs\343\Assignment 1 ADT polynomial\Assignment 1 ADT for poly\Debug\Assignment 1 ADT for poly.exe

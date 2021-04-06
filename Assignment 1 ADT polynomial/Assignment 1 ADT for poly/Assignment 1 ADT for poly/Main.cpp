@@ -71,7 +71,6 @@ int main() {
 	cout << "After:  D =" << D << endl << endl; 
 
 
-
 	cout << "Test assignment operators" << endl;
 	X = C = D = D;
 	Y += A -= B *= A;
