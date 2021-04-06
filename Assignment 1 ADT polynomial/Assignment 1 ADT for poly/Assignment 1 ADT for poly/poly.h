@@ -8,7 +8,7 @@ class Poly
 public:
 	Poly(int coefficientIn = 0, int largestExponentIn = 0);
 	//deep copy constructor
-	Poly(Poly& p);
+	Poly(const Poly& p);
 
 
 	~Poly();
@@ -16,15 +16,22 @@ public:
 	//overloads
 	friend ostream& operator<<(ostream& out, const Poly& p);
 
-	Poly operator+(Poly& p);
-	Poly operator-(Poly& p);
-	Poly operator*(Poly& p);
+	Poly operator+(const Poly& p);
+	Poly operator-(const Poly& p);
+	Poly operator*(const Poly& p);
 	bool operator==(const Poly& p) const;
 	bool operator!=(const Poly& p) const;
-	Poly& operator+=(const Poly& p) const;
-	Poly& operator-=(const Poly& p) const;
-	//might have to see bout this one
-	Poly& operator*=(const Poly& p) const;
+	Poly& operator+=(Poly& p);
+	Poly& operator-=(Poly& p);
+	Poly& operator*=(Poly& p);
+
+	//Poly operator-(int n) const;
+	//Poly operator+(int n) const;
+	//Poly operator*(int n);
+	//Poly& operator+=(int n);
+	//Poly& operator-=(int n);
+	//Poly& operator*=(int n);
+
 
 	//a get and set coeff w/ out of range on get
 	int getCoeff(int exponent) const;

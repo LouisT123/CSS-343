@@ -25,11 +25,10 @@ Poly::Poly(int coefficientIn, int largestExponentIn)
 	//add coeff to largest exponent
 	arr[largestExponentIn] = coefficientIn;
 
-	
 }
 
 //deep copy constructor
-Poly::Poly(Poly& p)
+Poly::Poly(const Poly& p)
 {
 	//added this
 	this->maxExponent = p.maxExponent;
@@ -43,10 +42,9 @@ Poly::Poly(Poly& p)
 		this->arr[i] = p.arr[i];
 	}
 
-	
 }
 
-Poly Poly::operator+(Poly& p)
+Poly Poly::operator+(const Poly& p)
 {
 	
 	if (p.getSize() > this->getSize())
@@ -74,7 +72,7 @@ Poly Poly::operator+(Poly& p)
 	
 }
 
-Poly Poly::operator-(Poly& p)
+Poly Poly::operator-(const Poly& p)
 {
 	
 	if (p.getSize() > getSize())
@@ -103,7 +101,7 @@ Poly Poly::operator-(Poly& p)
 
 }
 //multiply the coeff, add the exponents
-Poly Poly::operator*(Poly& p)
+Poly Poly::operator*(const Poly& p)
 {
 	int curExponent = p.getSize() + this->getSize();
 	//here adding exponents
@@ -122,7 +120,60 @@ Poly Poly::operator*(Poly& p)
 	return product;
 }
 
+bool Poly::operator==(const Poly& p) const
+{
+	//if the exponents aren't the same, then return false
+	if (maxExponent != p.maxExponent)
+	{
+		return false;
+	}
+	//if the coefficients are not the same, then return false
+	for (size_t i = 0; i <= maxExponent; i++)
+	{
+		if (arr[i] != p.arr[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
 
+bool Poly::operator!=(const Poly& p) const
+{
+	//if the exponents aren't the same, then return false
+	if (maxExponent != p.maxExponent)
+	{
+		return true;
+	}
+	//if the coefficients are not the same, then return false
+	for (size_t i = 0; i <= maxExponent; i++)
+	{
+		if (arr[i] != p.arr[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+Poly& Poly::operator+=(Poly& p) 
+{
+	*this = *this + p;
+	return *this;
+}
+
+
+Poly& Poly::operator-=(Poly& p)
+{
+	*this = *this - p;
+	return *this;
+}
+
+Poly& Poly::operator*=(Poly& p)
+{
+	*this = *this * p;
+	return *this;
+}
 
 int Poly::getSize() const
 {
@@ -131,15 +182,53 @@ int Poly::getSize() const
 
 int Poly::getCoeff(int exponent) const
 {
-	return arr[exponent];
+	if (exponent >= 0)
+	{
+		return arr[exponent];
+	}
+	else
+	{
+		cout << "input is out of range" << endl;
+	}
 }
 
+//implement 
 void Poly::setCoeff(int coeff, int exponent)
 {
-	arr[exponent] = coeff;
+	int size = exponent + 1;
+	if (size > maxExponent + 1)
+	{
+		//create poly with new exp ...
+		int* arr2 = (int*)malloc(sizeof(int) * size);
+		
+		Poly newP(0, size);
+		
+
+		//..fill w/ 0's
+		for (int i = 0; i < exponent; i++)
+		{
+			newP.arr[i] = 0;
+		}
+		//.. copy over ..
+		for (int i = 0; i <= maxExponent; i++)
+		{
+			newP.arr[i] = arr[i];
+		}
+
+		newP.arr[exponent] = coeff;
+		maxExponent = size;
+		arr = newP.arr;
+		maxExponent = exponent;
+		newP.arr = NULL;
+	}
+	else
+	{
+		arr[exponent] = coeff;
+	}
+	
 }
 
-//gotta valgrind to check
+
 Poly::~Poly()
 {
 	
@@ -168,11 +257,43 @@ ostream& operator<<(ostream& out, const Poly& p)
 	{
 		outputString += to_string(0) + "x^0";
 	}
+	else if (p.getCoeff(0) != 0 )
+	{
+		//loop through whole array starting from back
+		for (int i = p.getSize() - 1; i > 0; i--)
+		{
 
+			if (p.getCoeff(i) > 0)
+			{
+				outputString += "+" + to_string(p.arr[i]) + "x^" + to_string(i);
+			}
+			else if (p.getCoeff(i) < 0)
+			{
+				outputString += to_string(p.arr[i]) + "x^" + to_string(i);
+			}
+		}
+		outputString += "+" + to_string(p.getCoeff(0)) ;
+	}
+	else if (p.getCoeff(0) != 0)
+	{
+		//loop through whole array starting from back
+		for (int i = p.getSize() - 1; i > 0; i--)
+		{
+
+			if (p.getCoeff(i) > 0)
+			{
+				outputString += "+" + to_string(p.arr[i]) + "x^" + to_string(i);
+			}
+			else if (p.getCoeff(i) < 0)
+			{
+				outputString += to_string(p.arr[i]) + "x^" + to_string(i);
+			}
+		}
+		outputString += "+" + to_string(p.getCoeff(0));
+	}
 	//if 2 arg print
 	else
 	{
-		//TODO don't print 0's if zeros filled deleted
 		//loop through whole array starting from back
 		for (int i = p.getSize() - 1; i > 0; i--)
 		{
@@ -191,3 +312,43 @@ ostream& operator<<(ostream& out, const Poly& p)
 	out << outputString;
 	return out;
 }
+
+//Poly Poly::operator+(int n) const
+//{
+//	Poly num = *this;
+//	num.arr[0] += n;
+//	return num;
+//}
+//
+//Poly Poly::operator-(int n) const
+//{
+//	Poly num = *this;
+//	num.arr[0] -= n;
+//	return num;
+//}
+//
+//Poly Poly::operator*(int n)
+//{
+//	Poly num = *this;
+//	num.arr[0] *= n;
+//	return num;
+//}
+//
+//Poly& Poly::operator+=(int n)
+//{
+//	*this = *this + n;
+//	return *this;
+//}
+//
+//
+//Poly& Poly::operator-=(int n)
+//{
+//	*this = *this - n;
+//	return *this;
+//}
+//
+//Poly& Poly::operator*=(int n)
+//{
+//	*this = *this * n;
+//	return *this;
+//}
