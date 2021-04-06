@@ -1,13 +1,14 @@
-///////////////////////////////////////////////////////
-/// NEED COMMENTS
-//////////////////////////////////////
+//file: poly.h
+//Class polynomial implementations from poly.h
+//Louis Taing
 
 #include <iostream>
 #include "poly.h"
 #include <string>
 using namespace std;
 
-//constructor
+//-----------------------------------------------------------------------------
+//constructor for polynomial class
 Poly::Poly(int coefficientIn, int largestExponentIn)
 {
 	
@@ -24,10 +25,10 @@ Poly::Poly(int coefficientIn, int largestExponentIn)
 	}
 	//add coeff to largest exponent
 	arr[largestExponentIn] = coefficientIn;
-
 }
 
-//deep copy constructor
+//-----------------------------------------------------------------------------
+//deep copy constructor for polynomial class
 Poly::Poly(const Poly& p)
 {
 	//added this
@@ -44,6 +45,9 @@ Poly::Poly(const Poly& p)
 
 }
 
+//-----------------------------------------------------------------------------
+//overloaded addition operator  (add 2 polynomials)
+//operator +
 Poly Poly::operator+(const Poly& p)
 {
 	
@@ -72,6 +76,9 @@ Poly Poly::operator+(const Poly& p)
 	
 }
 
+//-----------------------------------------------------------------------------
+//overloaded subtraction operator (subtract 2 polynomials)
+//operator -
 Poly Poly::operator-(const Poly& p)
 {
 	
@@ -100,7 +107,10 @@ Poly Poly::operator-(const Poly& p)
 	}
 
 }
-//multiply the coeff, add the exponents
+
+//-----------------------------------------------------------------------------
+//overloaded multiplication operator (multiply 2 polynomials)
+//operator *
 Poly Poly::operator*(const Poly& p)
 {
 	int curExponent = p.getSize() + this->getSize();
@@ -120,6 +130,9 @@ Poly Poly::operator*(const Poly& p)
 	return product;
 }
 
+//-----------------------------------------------------------------------------
+//overloaded equality operator (compare 2 polynomials to see if equal)
+//operator ==
 bool Poly::operator==(const Poly& p) const
 {
 	//if the exponents aren't the same, then return false
@@ -138,6 +151,9 @@ bool Poly::operator==(const Poly& p) const
 	return true;
 }
 
+//-----------------------------------------------------------------------------
+//overloaded inequality operator (compare 2 polynomials to see if not equal)
+//operator !=
 bool Poly::operator!=(const Poly& p) const
 {
 	//if the exponents aren't the same, then return false
@@ -156,30 +172,42 @@ bool Poly::operator!=(const Poly& p) const
 	return false;
 }
 
+//-----------------------------------------------------------------------------
+//overloaded addition assignment operator (add 1 polynomial to self )
+//operator +=
 Poly& Poly::operator+=(Poly& p) 
 {
 	*this = *this + p;
 	return *this;
 }
 
-
+//-----------------------------------------------------------------------------
+//overloaded subtraction assignment operator (subtract 1 polynomial with self )
+//operator -=
 Poly& Poly::operator-=(Poly& p)
 {
 	*this = *this - p;
 	return *this;
 }
 
+//-----------------------------------------------------------------------------
+//overloaded multiplication assignment operator (multiply 1 polynomial with self )
+//operator *=
 Poly& Poly::operator*=(Poly& p)
 {
 	*this = *this * p;
 	return *this;
 }
 
+//-----------------------------------------------------------------------------
+//returns size of array
 int Poly::getSize() const
 {
 	return maxExponent + 1;
 }
 
+//-----------------------------------------------------------------------------
+//returns coefficient of array if possible
 int Poly::getCoeff(int exponent) const
 {
 	if (exponent >= 0)
@@ -192,7 +220,9 @@ int Poly::getCoeff(int exponent) const
 	}
 }
 
-//implement 
+//-----------------------------------------------------------------------------
+//Set mutuator
+//concatenates polynmials
 void Poly::setCoeff(int coeff, int exponent)
 {
 	int size = exponent + 1;
@@ -203,7 +233,6 @@ void Poly::setCoeff(int coeff, int exponent)
 		
 		Poly newP(0, size);
 		
-
 		//..fill w/ 0's
 		for (int i = 0; i < exponent; i++)
 		{
@@ -228,13 +257,11 @@ void Poly::setCoeff(int coeff, int exponent)
 	
 }
 
-
-Poly::~Poly()
-{
-	
-}
-
-
+//-----------------------------------------------------------------------------
+//Set mutuator
+// operator>> 
+// Overloaded input operator for class Array;
+// inputs values for entire array.
 ostream& operator<<(ostream& out, const Poly& p)
 {
 	//inital string
@@ -257,23 +284,7 @@ ostream& operator<<(ostream& out, const Poly& p)
 	{
 		outputString += to_string(0) + "x^0";
 	}
-	else if (p.getCoeff(0) != 0 )
-	{
-		//loop through whole array starting from back
-		for (int i = p.getSize() - 1; i > 0; i--)
-		{
-
-			if (p.getCoeff(i) > 0)
-			{
-				outputString += "+" + to_string(p.arr[i]) + "x^" + to_string(i);
-			}
-			else if (p.getCoeff(i) < 0)
-			{
-				outputString += to_string(p.arr[i]) + "x^" + to_string(i);
-			}
-		}
-		outputString += "+" + to_string(p.getCoeff(0)) ;
-	}
+	//print the x^0 as well in int form (ie +50)
 	else if (p.getCoeff(0) != 0)
 	{
 		//loop through whole array starting from back
@@ -282,11 +293,11 @@ ostream& operator<<(ostream& out, const Poly& p)
 
 			if (p.getCoeff(i) > 0)
 			{
-				outputString += "+" + to_string(p.arr[i]) + "x^" + to_string(i);
+				outputString += "+" + to_string(p.arr[i]) + "x^"+to_string(i);
 			}
 			else if (p.getCoeff(i) < 0)
 			{
-				outputString += to_string(p.arr[i]) + "x^" + to_string(i);
+				outputString += to_string(p.arr[i]) + "x^" +to_string(i);
 			}
 		}
 		outputString += "+" + to_string(p.getCoeff(0));
@@ -313,42 +324,4 @@ ostream& operator<<(ostream& out, const Poly& p)
 	return out;
 }
 
-//Poly Poly::operator+(int n) const
-//{
-//	Poly num = *this;
-//	num.arr[0] += n;
-//	return num;
-//}
-//
-//Poly Poly::operator-(int n) const
-//{
-//	Poly num = *this;
-//	num.arr[0] -= n;
-//	return num;
-//}
-//
-//Poly Poly::operator*(int n)
-//{
-//	Poly num = *this;
-//	num.arr[0] *= n;
-//	return num;
-//}
-//
-//Poly& Poly::operator+=(int n)
-//{
-//	*this = *this + n;
-//	return *this;
-//}
-//
-//
-//Poly& Poly::operator-=(int n)
-//{
-//	*this = *this - n;
-//	return *this;
-//}
-//
-//Poly& Poly::operator*=(int n)
-//{
-//	*this = *this * n;
-//	return *this;
-//}
+
