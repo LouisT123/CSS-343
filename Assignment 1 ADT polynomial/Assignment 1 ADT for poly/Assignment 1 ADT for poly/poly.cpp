@@ -81,6 +81,7 @@ Poly Poly::operator+(const Poly& p)
 			sum.arr[i] = arr[i] + sum.arr[i];
 		}
 		return sum;
+	
 	}
 	else 
 	{
@@ -92,6 +93,7 @@ Poly Poly::operator+(const Poly& p)
 			sum2.arr[i] = p.arr[i] + sum2.arr[i];
 		}
 		return sum2;
+	
 	}
 	
 }
@@ -238,6 +240,7 @@ int Poly::getCoeff(int exponent) const
 	{
 		cout << "input is out of range" << endl;
 	}
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -278,10 +281,10 @@ void Poly::setCoeff(int coeff, int exponent)
 }
 
 //-----------------------------------------------------------------------------
-//Set mutuator
-// operator>> 
-// Overloaded input operator for class Array;
-// inputs values for entire array.
+// accessor
+// operator<<
+// Overloaded output operator for class Array;
+// outputs values for entire array.
 ostream& operator<<(ostream& out, const Poly& p)
 {
 	//inital string
@@ -377,5 +380,28 @@ ostream& operator<<(ostream& out, const Poly& p)
 	out << outputString;
 	return out;
 }
+//-----------------------------------------------------------------------------
+// mutuator
+// operator>> 
+// Overloaded input operator for class Array;
+// inputs values for entire array.
+istream& operator>>(istream& in, Poly& p)
+{
+	int coeff = 0;
+	int expon = 0;
+	bool stop = false;
 
+	while (stop == false)
+	{
+		in >> coeff;
+		in >> expon;
+		if (coeff == -1 && expon == -1)
+		{
+			stop == true;
+			break;
+		}
+		p.setCoeff(coeff, expon);
+	}
 
+	return in;
+}

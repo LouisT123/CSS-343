@@ -8,22 +8,12 @@
 // be sure to test the middle and also all the boundary conditions.  Test
 // values on the boundary and outside the boundaries, i.e., too big/small.
 
-//////////////////////////////////////////////////////////////////////////////
-//THIS IS A TEMP TEST MAIN TO SEE IF IT WORKS B4 SET TO LINUX 
-//MAKE A NEW MAIN BASED SORTA OFF THIS AFTER
-//////////////////////////////////////////////////////
-
 #include "poly.h"
 #include <iostream>
+
 using namespace std;
 
-
 int main() {
-
-	// This main does not do a thorough job of testing.  When testing arrays,
-	// be sure to test the middle and also all the boundary conditions.  Test
-	// values on the boundary and outside the boundaries, i.e., too big/small.
-
 	Poly A(5, 7), B(3, 4), C(2), D(A), X, Y;
 	Poly A2, B2, Z1, Z2;
 
@@ -31,31 +21,23 @@ int main() {
 	// A = +5x^7 -4x^3 +10x -2
 	// B = +3x^4 +1x^3 
 
-	////WHEN MAKING THE NEW MAIN DECLARE OWN POLY, NO CIN
-	//cout << "Enter terms for polynomial A.  Enter a coefficient " << endl
-	//	<< "then exponent for each term. Enter -1 -1 to terminate." << endl;
-	//cin >> A;            
-	// or use a bunch of setCoeff
-	A.setCoeff(-4, 3);
-	A.setCoeff(10, 1);
-	A.setCoeff(-2, 0);
-	//cout << "Enter terms for polynomial B.  Enter a coefficient " << endl
-	//	<< "then exponent for each term. Enter -1 -1 to terminate." << endl;
-	//cin >> B;                                     
-	// or use a bunch of setCoeff
-	B.setCoeff(1, 3);
+	cout << "Enter terms for polynomial A.  Enter a coefficient " << endl
+		<< "then exponent for each term. Enter -1 -1 to terminate." << endl;
+	cin >> A;                                     // or use a bunch of setCoeff
+	cout << "Enter terms for polynomial B.  Enter a coefficient " << endl
+		<< "then exponent for each term. Enter -1 -1 to terminate." << endl;
+	cin >> B;                                     // or use a bunch of setCoeff
+
 	// outputs exactly what is in quotes: "A = +5x^7 -4x^3 +10x -2"
 	cout << "A =" << A << endl;
 	// outputs exactly what is in quotes: "B = +3x^4 +1x^3"
 	cout << "B =" << B << endl << endl;
 
-	
+
 	A2 = A;
 	B2 = B;
 	C = A + B;
 	cout << "Compute C = A + B: " << C << endl << endl;
-	C = B + A;
-	cout << "Compute C = B + A: " << C << endl << endl;
 
 	cout << ((A == B) ? "A == B" : "A is not == B") << endl;
 	cout << ((A != B) ? "A is not == B" : "A == B") << endl << endl;
@@ -65,11 +47,10 @@ int main() {
 	Z2 = B2 - A2;
 	cout << "Compute  Z2 = B2 - A2: " << Z2 << endl << endl;
 
-	cout << "compute D =  A * B - 15" << endl;
+	cout << "Compute  D = A * B - 15" << endl;
 	cout << "Before: D =" << D << endl;
 	D = A * B - 15;
-	cout << "After:  D =" << D << endl << endl; 
-
+	cout << "After:  D =" << D << endl << endl;
 
 	cout << "Test assignment operators" << endl;
 	X = C = D = D;
@@ -78,17 +59,13 @@ int main() {
 	cout << "Y =" << Y << endl << endl;
 
 	cout << "Get and Set coefficient" << endl;
-	int coeff = D.getCoeff(0); //tested with 7 gave me 5, we good!
+	int coeff = D.getCoeff(0);
 	cout << "coeff of subscript 0 of D is: " << coeff << endl;
-	cout << "Doing getCoeff for term -20000" << endl; //handles outofrange, good!
+	cout << "Doing getCoeff for term -20000" << endl;
 	coeff = D.getCoeff(-20000);              // handle value out of range
-
 	D.setCoeff(50, 0);                        // set x^0 coeff to 50
 	D.setCoeff(50, 20000);                    // set x^20000 coeff to 50
 	cout << "D =" << D << endl << endl;
-
-	
-
 
 	return 0;
 }

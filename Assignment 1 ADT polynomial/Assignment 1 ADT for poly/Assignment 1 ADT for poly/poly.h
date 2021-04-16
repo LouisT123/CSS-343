@@ -25,8 +25,9 @@ public:
 	Poly(int coefficientIn = 0, int largestExponentIn = 0);	 //constructor
 	Poly(const Poly& p);									 //deep copy constructor
 
-													//outputs polynomial, mutuator
+													//outputs polynomial, accessor
 	friend ostream& operator<<(ostream& out, const Poly& p); 
+	friend istream& operator>>(istream& out, Poly& p);
 	
 	Poly operator=(const Poly& p);						//assignments 2 polynomials
 	Poly operator+(const Poly& p);						//adds 2 polynomials
