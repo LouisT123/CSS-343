@@ -1,0 +1,5 @@
+﻿  bintree.cpp
+  main.cpp
+  Generating Code...
+C:\Users\L3g8n\Desktop\Programs\343\Assignment2\Assignment2\bintree.cpp(120): warning C4715: 'BinTree::equalHelper': not all control paths return a value
+  Assignment2.vcxproj -> C:\Users\L3g8n\Desktop\Programs\343\Assignment2\Debug\Assignment2.exe
