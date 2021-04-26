@@ -15,6 +15,8 @@
 #include <iostream>
 using namespace std;
 
+#include <string>
+
 const int ARRAYSIZE = 100;
 
 //global function prototypes
@@ -55,23 +57,23 @@ int main() {
 		T.displaySideways();
 
 
-		//	// test retrieve 
-		//	NodeData* p;                    // pointer of retrieved object
-		//	bool found;                     // whether or not object was found in tree
-		//	found = T.retrieve(andND, p);
-		//	cout << "Retrieve --> and:  " << (found ? "found" : "not found") << endl;
-		//	found = T.retrieve(notND, p);
-		//	cout << "Retrieve --> not:  " << (found ? "found" : "not found") << endl;
-		//	found = T.retrieve(sssND, p);
-		//	cout << "Retrieve --> sss:  " << (found ? "found" : "not found") << endl;
+			// test retrieve 
+			NodeData* p;                    // pointer of retrieved object
+			bool found;                     // whether or not object was found in tree
+			found = T.retrieve(andND, p);
+			cout << "Retrieve --> and:  " << (found ? "found" : "not found") << endl;
+			found = T.retrieve(notND, p);
+			cout << "Retrieve --> not:  " << (found ? "found" : "not found") << endl;
+			found = T.retrieve(sssND, p);
+			cout << "Retrieve --> sss:  " << (found ? "found" : "not found") << endl;
 
-		//	// test getHeight 
-		//	cout << "Height    --> and:  " << T.getHeight(andND) << endl;
-		//	cout << "Height    --> not:  " << T.getHeight(notND) << endl;
-		//	cout << "Height    --> sss:  " << T.getHeight(sssND) << endl;
-		//	cout << "Height    --> tttt:  " << T.getHeight(ttttND) << endl;
-		//	cout << "Height    --> ooo:  " << T.getHeight(oooND) << endl;
-		//	cout << "Height    --> y:  " << T.getHeight(yND) << endl;
+			// test getHeight 
+			cout << "Height    --> and:  " << T.getHeight(andND) << endl;
+			cout << "Height    --> not:  " << T.getHeight(notND) << endl;
+			cout << "Height    --> sss:  " << T.getHeight(sssND) << endl;
+			cout << "Height    --> tttt:  " << T.getHeight(ttttND) << endl;
+			cout << "Height    --> ooo:  " << T.getHeight(oooND) << endl;
+			cout << "Height    --> y:  " << T.getHeight(yND) << endl;
 
 			// test ==, and != 
 			T2 = T;
@@ -80,17 +82,19 @@ int main() {
 			cout << "T == dup?    " << (T == dup ? "equal" : "not equal") << endl;
 			dup = T;
 
-		//	// somewhat test bstreeToArray and arrayToBSTree
-		//	T.bstreeToArray(ndArray);
-		//	T.arrayToBSTree(ndArray);
-		//	T.displaySideways();
+			// somewhat test bstreeToArray and arrayToBSTree
+			T.bstreeToArray(ndArray);
 
-		//	T.makeEmpty();                  // empty out the tree
-		//	initArray(ndArray);             // empty out the array
+				
+		    T.arrayToBSTree(ndArray);
+			T.displaySideways();
 
-		//	cout << "---------------------------------------------------------------"
-		//		<< endl;
-		//	cout << "Initial data:" << endl << "  ";
+			T.makeEmpty();                  // empty out the tree
+			initArray(ndArray);             // empty out the array
+
+			cout << "---------------------------------------------------------------"
+				<< endl;
+			cout << "Initial data:" << endl << "  ";
 		buildTree(T, infile);
 		cout << endl;
 	}
