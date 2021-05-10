@@ -16,10 +16,10 @@ GraphM::GraphM()
 	{
 		for (size_t j = 0; j < MAXNODES; j++)
 		{
-			C[i][j] = INT_MAX;					//all C to "inf"
-			T[i][j].visited = false;			//all visited to false
-			T[i][j].path = 0;					//all paths to 0
-			T[i][j].dist = INT_MAX;				//all dist to "inf"
+			C[i][j] = INT_MAX;				
+			T[i][j].visited = false;		
+			T[i][j].path = 0;				
+			T[i][j].dist = INT_MAX;				
 		}
 	}
 
@@ -122,7 +122,7 @@ void GraphM::findShortestPath()
 	}
 }
 //-----------------------------------------------------------------------------
-//uses couts to demonstrate that the algorithm works properly. 
+//uses couts to demonstrate that the algorithm works properly. display enitre graph 
 void GraphM::displayAll()
 {
 	if (size > 0) 
@@ -155,7 +155,7 @@ void GraphM::displayAll()
 	}
 }
 //-----------------------------------------------------------------------------
-//helper for display all func
+//helper for display all func (gives path)
 void GraphM::getPathToDisplayAll(int from, int to)								
 {
 	if (T[from][to].dist != INT_MAX)
@@ -168,7 +168,7 @@ void GraphM::getPathToDisplayAll(int from, int to)
 //-----------------------------------------------------------------------------
 //uses couts to display the shortest distance with path info between the 
 //fromNode to toNode.
-void GraphM::display(int from, int to)											//PROBLEM WITH DISPLAY helper i think
+void GraphM::display(int from, int to)											
 {
 	//destination and origin validity
 	if ((from > size || from < 0) || (to > size || to < 0))
@@ -184,7 +184,7 @@ void GraphM::display(int from, int to)											//PROBLEM WITH DISPLAY helper i
 		cout << setw(12) << T[from][to].dist << setw(12);
 		getPathToDisplayAll(from, to); 
 		cout << endl;
-		getPathToDisplay(from, to); 
+		getDataToDisplay(from, to); 
 	}
 	else
 	{
@@ -195,14 +195,14 @@ void GraphM::display(int from, int to)											//PROBLEM WITH DISPLAY helper i
 	
 
 }
-//-----------------------------------------------------------------------------	//Not working prob? //issue most likely lies here, incompatibility
-//helper for display func
-void GraphM::getPathToDisplay(int from, int to)
+//-----------------------------------------------------------------------------	
+//helper for display func (gives data)
+void GraphM::getDataToDisplay(int from, int to)
 {
 	if (T[from][to].dist != INT_MAX)
 	{
 		int path = to;
-		getPathToDisplay(from, T[from][to].path); 
+		getDataToDisplay(from, T[from][to].path); 
 		cout << data[path] << endl << endl;
 	}
 }

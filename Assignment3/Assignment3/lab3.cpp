@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include <fstream>
-//#include "graphl.h"
+#include "graphl.h"
 #include "graphm.h"
 using namespace std;
 
@@ -40,22 +40,22 @@ int main() {
 		G.display(1, 4);
 	}
 
-	//// part 2 
-	//ifstream infile2("data32.txt");
-	//if (!infile2) {
-	//	cout << "File could not be opened." << endl;
-	//	return 1;
-	//}
+	// part 2 
+	ifstream infile2("data32.txt");
+	if (!infile2) {
+		cout << "File could not be opened." << endl;
+		return 1;
+	}
 
-	////for each graph, find the depth-first search ordering
-	//for (;;) {
-	//	GraphL G;
-	//	G.buildGraph(infile2);
-	//	if (infile2.eof())
-	//		break;
-	//	G.displayGraph();
-	//	G.depthFirstSearch();    // find and display depth-first ordering to cout
-	//}
+	//for each graph, find the depth-first search ordering
+	for (;;) {
+		GraphL G;
+		G.buildGraph(infile2);
+		if (infile2.eof())
+			break;
+		G.displayGraph();
+		G.depthFirstSearch();    // find and display depth-first ordering to cout
+	}
 
 	cout << endl;
 	return 0;

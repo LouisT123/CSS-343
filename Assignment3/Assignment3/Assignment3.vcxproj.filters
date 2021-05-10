@@ -24,12 +24,18 @@
     <ClCompile Include="graphm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nodedata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="graphm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
